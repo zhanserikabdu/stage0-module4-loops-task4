@@ -27,9 +27,9 @@ class NumberToBreakOnTest extends BaseIOTest {
     void printNumbersUntilWithBreakOnIterateUntilBiggerThanBreakOn() {
         NumberToBreakOn numberToBreakOn = new NumberToBreakOn();
 
-        numberToBreakOn.printNumbersUntilWithBreakOn(11, 10);
+        numberToBreakOn.printNumbersUntilWithBreakOn(6, 5);
 
-        assertOutEquals("iterating till the end");
+        assertOutEquals("iterating till the end\n1\n2\n3\n4\n5\n");
     }
 
     @Test
@@ -38,7 +38,8 @@ class NumberToBreakOnTest extends BaseIOTest {
         List<String> strings = Files.readAllLines(path);
 
         List<String> result = strings.stream()
-                .filter(line -> line.contains("break") || line.contains("int i = 0; i < numberToGoUntil; i++"))
+                .filter(line -> line.contains("break") || line.contains("int i = 0; i < numberToGoUntil; i++")
+                    || line.contains("int i = 1; i <= numberToGoUntil; i++"))
                 .collect(Collectors.toList());
 
         assertEquals(2, result.size());
